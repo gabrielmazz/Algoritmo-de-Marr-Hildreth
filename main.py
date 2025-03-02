@@ -5,6 +5,7 @@ from rich.prompt import Prompt
 import Detector.detector as detector
 import Utils.utils_imagem as ut_img
 import Utils.utils_code as ut_code
+import numpy as np
 
 # Variáveis para passagem de argumentos via terminal
 parser = argparse.ArgumentParser()
@@ -13,6 +14,7 @@ parser = argparse.ArgumentParser()
 SAVE = parser.add_argument('--save', action='store_true', help='Salvar a imagem na pasta de resultados')
 
 def marr(imagem_escolhida, tipo, sigma, threshold):
+    
     # Leitura da imagem com o matplotlib para a plotagem depois
     Imagem_Original_Mat = ut_img.leitura_Imagem_Matplotlib('./imagens/{}'.format(imagem_escolhida))
     
@@ -20,8 +22,7 @@ def marr(imagem_escolhida, tipo, sigma, threshold):
     Imagem_Original = ut_img.leitura_Imagem('./imagens/{}'.format(imagem_escolhida))    
 
     # Filtro de Marr-Hildreth
-    Imagem_Filtrada = detector.marrhildreth(Imagem_Original, sigma, threshold)
-    
+    Imagem_Filtrada = detector.marrhildreth(Imagem_Original, sigma, threshold, np.array([[1, 1, 1], [1, -8, 1], [1, 1, 1]]))
     
     # Realiza a plotagem das imagens
     ut_img.plotagem_imagem(Imagem_Original_Mat, Imagem_Original, Imagem_Filtrada)

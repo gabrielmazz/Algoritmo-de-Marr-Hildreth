@@ -38,7 +38,7 @@ def plotagem_imagem(Imagem_Original_Mat, Imagem_Original, Imagem_Filtrada):
     axs[1].set_title('Imagem Original em Escala de Cinza')
     
     axs[2].imshow(Imagem_Filtrada, cmap='Greys')
-    axs[2].set_title('Imagem Filtrada')
+    axs[2].set_title('Imagem com Filtro Marr-Hildreth')
     
     # Remove os eixos dos subplots
     for ax in axs.flat:

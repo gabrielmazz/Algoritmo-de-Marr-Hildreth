@@ -14,7 +14,7 @@ def marrhildreth(image, sigma, threshold):
     edges = zero_crossing(laplacian, threshold=threshold)
     return edges
 
-def convolve(image: np.ndarray, kernel: np.ndarray) -> np.ndarray:
+def convolve(image, kernel):
 
     krows, kcols = kernel.shape
     rows, cols = image.shape
@@ -40,7 +40,7 @@ def convolve(image: np.ndarray, kernel: np.ndarray) -> np.ndarray:
     return conv
 
 
-def gaussian_kernel(sigma: float) -> np.ndarray:
+def gaussian_kernel(sigma)
    
     size = np.ceil(3 * sigma).astype(int)
 
@@ -54,7 +54,7 @@ def gaussian_kernel(sigma: float) -> np.ndarray:
     return kernel
 
 
-def zero_crossing(image: np.ndarray, threshold: float = 0) -> np.ndarray:
+def zero_crossing(image, threshold):
    
     N, M = image.shape
 

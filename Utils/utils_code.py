@@ -8,7 +8,7 @@ def print_title():
     console = Console()
     
     # Título
-    title = '𝙰𝚕𝚐𝚘𝚛𝚒𝚝𝚖𝚘 𝚍𝚘 𝙵𝚒𝚕𝚝𝚛𝚘 𝙱𝚘𝚡'
+    title = '𝙰𝚕𝚐𝚘𝚛𝚒𝚝𝚖𝚘 𝚍𝚎 𝙼𝚊𝚛𝚛 𝙷𝚒𝚕𝚍𝚛𝚎𝚝𝚑'
     
     subtitle = '𝚃𝚛𝚊𝚋𝚊𝚕𝚑𝚘 𝚍𝚎 𝙿𝚛𝚘𝚌𝚎𝚜𝚜𝚊𝚖𝚎𝚗𝚝𝚘 𝚍𝚎 𝙸𝚖𝚊𝚐𝚎𝚗𝚜 𝙳𝚒𝚐𝚒𝚝𝚊𝚒𝚜'
     

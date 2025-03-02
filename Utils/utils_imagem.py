@@ -47,9 +47,9 @@ def plotagem_imagem(Imagem_Original_Mat, Imagem_Original, Imagem_Filtrada):
     # Mostra a figura com os subplots
     plt.show()
     
-def salvar_imagem(Imagem_Binaria, nome):
+def salvar_imagem(Imagem, nome):
     
-    plt.imsave(nome, Imagem_Binaria, cmap='Greys')
+    plt.imsave(nome, Imagem, cmap='Greys')
     
 def lista_imagens_pasta(pasta, console):
     

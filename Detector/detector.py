@@ -40,7 +40,7 @@ def convolve(image, kernel):
     return conv
 
 
-def gaussian_kernel(sigma)
+def gaussian_kernel(sigma):
    
     size = np.ceil(3 * sigma).astype(int)
 

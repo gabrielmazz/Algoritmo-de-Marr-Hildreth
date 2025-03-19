@@ -5,6 +5,9 @@ from rich.console import Console
 from rich.prompt import Prompt
 import os
 import cv2
+import requests
+from PIL import Image
+from io import BytesIO
 
 # Leitura da imagem com o matplotlib
 def leitura_Imagem_Matplotlib(nome):
@@ -58,18 +61,50 @@ def lista_imagens_pasta(pasta, console):
     
     # Printa as imagens
     for i, imagem in enumerate(imagens):
-        console.print('{}. {}'.format(i+1, imagem))
+        
+        # Extrai o nome da imagem a sua extensão
+        nome, extensao = os.path.splitext(imagem)
+        
+        if nome == "IMAGEM_BAIXADA_URL":  # Verifica se é a imagem_baixada
+            console.print(f'{i+1}. [bold green]{nome}{extensao}[/bold green]')  # Imprime em verde
+        else:
+            console.print(f'{i+1}. {nome}{extensao}')  # Imprime normalmente
         
     return imagens
 
 def escolher_imagens(imagens, console):
     
-    # Escolhe uma imagem para aplicar o filtro Box
+    # Escolhe uma imagem para aplicar o metodo de Marr-Hildreth
     while True:
-        escolha = int(Prompt.ask('Escolha uma imagem para aplicar o [bold purple]Filtro Box[/bold purple]:', console=console))
+        escolha = int(Prompt.ask('Escolha uma imagem para aplicar o [bold purple]Marr-Hildreth[/bold purple]', console=console))
         
         if escolha > 0 and escolha <= len(imagens):
             return imagens[escolha-1]
         else:
             console.print('Escolha inválida. Tente novamente.')
     
+    
+def download_imagem(args):
+    
+    # Baixa a imagem da URL
+    response = requests.get(args.url)
+    
+    # Verifica se a requisição foi bem sucedida
+    if response.status_code == 200:
+        # Lê a imagem
+        Imagem = Image.open(BytesIO(response.content))
+        
+        # Define o nome da imagem
+        nome_imagem = "IMAGEM_BAIXADA_URL"  # Nome fixo
+        extensao = args.url.split('.')[-1]  # Extrai a extensão da URL (ex: jpg, png, etc.)
+        
+        # Salva a imagem com o novo nome
+        Imagem.save(f'./imagens/{nome_imagem}.{extensao}')
+        
+    else:
+        console.print('Erro ao baixar a imagem. Tente novamente.')
+
+def deletar_imagem(nome):
+    
+    # Deleta a imagem
+    os.remove('./imagens/{}'.format(nome))
